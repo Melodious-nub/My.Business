@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+/* body {
+    font-family: var(--font-family);
+} */
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
 .container-fluid {
     max-width: 95% !important;
 }
