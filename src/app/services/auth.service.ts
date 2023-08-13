@@ -1,29 +1,37 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private isAuthenticated = false;
+  
+  constructor(private router: Router) {}
 
-  constructor() { }
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
+  }
 
-  login(username: string, password: string): boolean {
-    // In a real-world scenario, you'll call an API here.
-    // For this example, if the username is 'admin' and password is 'password', authentication will succeed.
-    if (username === 'admin' && password === 'admin123') {
-      this.isAuthenticated = true;
-      return true;
-    }
-    return false;
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn() {
+    return this.getToken() !== null;
   }
 
   logout() {
-    this.isAuthenticated = false;
+    localStorage.removeItem('token');
+    this.router.navigate(['login']);
   }
 
-  isLoggedIn(): boolean {
-    return this.isAuthenticated;
+  login({ username, password }: any): Observable<any> {
+    if (username === 'admin' && password === 'admin123') {
+      this.setToken('abcdefghijklmnopqrstuvwxyz');
+      return of({ name: 'Admin', email: 'admin@gmail.com' });
+    }
+    return throwError(new Error('Failed to login'));
   }
 
 }

@@ -14,7 +14,7 @@
                     <h3 class="header text-center">Welcome Back</h3>
                     <p class="text-center sub-text">Please sign in to continue</p>
 
-                    <form class="container width-input mt-4" (ngSubmit)="onLogin()">
+                    <form #loginForm="ngForm" class="container width-input mt-4" (ngSubmit)="onLogin(loginForm)">
                         <div class="mb-3">
                             <label for="username" class="form-label label-font">Username</label>
                             <input type="email" class="form-control" id="username" placeholder="Enter your username" [(ngModel)]="username" name="username" required>

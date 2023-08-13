@@ -14,16 +14,22 @@ export class LandingComponent implements OnInit {
   constructor(private auth: AuthService, private router: Router) { }
 
   ngOnInit(): void {
+    if (this.auth.isLoggedIn()) {
+      this.router.navigate(['admin']);
+    }
   }
 
-  onLogin(): void {
-    const loggedIn = this.auth.login(this.username, this.password);
-    if (loggedIn) {
-      // Navigate to admin dashboard or some protected route
-      this.router.navigate(['/admin']);
-    } else {
-      // Show some error message
-      alert('Invalid credentials!');
+  onLogin(loginForm:any): void {
+    if (loginForm.valid) {
+      this.auth.login(loginForm.value).subscribe(
+        (result) => {
+          console.log(result);
+          this.router.navigate(['/admin']);
+        },
+        (err: Error) => {
+          alert(err.message);
+        }
+      );
     }
   }
 
