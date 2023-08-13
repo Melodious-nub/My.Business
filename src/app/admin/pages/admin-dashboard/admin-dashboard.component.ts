@@ -1,15 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.css']
 })
-export class AdminDashboardComponent {
-  visible!: boolean;
+export class AdminDashboardComponent implements OnInit {
 
-  showDialog() {
-      this.visible = true;
+  constructor(private auth: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+  }
+
+  logOutAdmin() {
+    this.auth.logout();
   }
 
 }

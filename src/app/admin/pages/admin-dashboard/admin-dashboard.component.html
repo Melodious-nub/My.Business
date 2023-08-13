@@ -3,6 +3,26 @@
     <div class="container-fluid">
         <a class="navbar-brand">MY<span style="color: red;">.</span>BUSINESS</a>
 
-        <button class="btn btn-sm btn-outline-danger">Logout</button>
+        <button class="btn btn-sm button_mod" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalLogout"><span class="me-2">Logout</span> <i class="fa-solid fa-arrow-right-from-bracket"></i></button>
     </div>
 </nav>
+
+
+<!-- modal for logout -->
+<div class="modal fade" id="exampleModalLogout" tabindex="-1" aria-labelledby="exampleModalLogoutLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLogoutLabel">Log out</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Are you sure to log out?
+            </div>
+            <div class="modal-footer">
+                <button data-bs-dismiss="modal" class="btn btn-sm btn-light border">Close</button>
+                <button mat-raised-button data-bs-dismiss="modal" class="ms-2 btn btn-sm btn-danger" (click)="logOutAdmin()">Log out</button>
+            </div>
+        </div>
+    </div>
+</div>
